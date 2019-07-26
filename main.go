@@ -21,7 +21,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	server, serverError := net.Listen("tcp", ":"+"2222")
+	server, serverError := net.Listen("tcp", ":"+port)
 
 	if serverError != nil {
 		fmt.Println("Error: ", serverError)
