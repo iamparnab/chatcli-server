@@ -17,7 +17,7 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 		 * https://golang.org/pkg/encoding/json/#NewDecoder
 		 */
 		decoder := json.NewDecoder(conn)
-		decoder.DisallowUnknownFields()
+		// decoder.DisallowUnknownFields()
 		err := decoder.Decode(&userData)
 
 		if err != nil {
