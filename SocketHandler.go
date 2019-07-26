@@ -20,6 +20,7 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 
 		if err != nil {
 			go fmt.Println("Error", err, conn.RemoteAddr())
+			conn.Close()
 			respObj := QueryZeroType{
 				Q:            0,
 				Ok:           false,
