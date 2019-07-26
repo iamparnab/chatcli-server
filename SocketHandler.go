@@ -19,7 +19,7 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 		decoder := json.NewDecoder(conn)
 		// decoder.DisallowUnknownFields()
 		err := decoder.Decode(&userData)
-
+		fmt.Println("AFTER DECODE")
 		if err != nil {
 			go fmt.Println("Error", err, conn.RemoteAddr())
 			respObj := QueryZeroType{
