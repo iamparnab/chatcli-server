@@ -8,7 +8,9 @@ import (
 
 // SocketHandler handles socket sonnections
 func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
+	fmt.Println("OUT")
 	for {
+		fmt.Println("IN")
 		userData := QueryOneType{}
 
 		/**
