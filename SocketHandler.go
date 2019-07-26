@@ -8,20 +8,13 @@ import (
 
 // SocketHandler handles socket sonnections
 func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
-	fmt.Println("OUT")
 	for {
-		fmt.Println("IN")
 		userData := QueryOneType{}
-
-		/**
-		 * https://golang.org/pkg/encoding/json/#NewDecoder
-		 */
-		decoder := json.NewDecoder(conn)
-		// decoder.DisallowUnknownFields()
-		err := decoder.Decode(&userData)
-		fmt.Println("AFTER DECODE")
+		msg := make([]byte, 1024)
+		n, err := conn.Read(msg)
+		go fmt.Println("Source: ", conn.RemoteAddr(), " Byte size: ", n)
 		if err != nil {
-			fmt.Println("Error", err, conn.RemoteAddr())
+			go fmt.Println("Error", err, conn.RemoteAddr())
 			respObj := QueryZeroType{
 				Q:            0,
 				Ok:           false,
@@ -30,6 +23,8 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 			json.NewEncoder(conn).Encode(respObj)
 			break
 		} else {
+			err := json.Unmarshal(msg, &userData)
+			fmt.Println(err, userData)
 			switch userData.Q {
 			case 0:
 				addNewEntry(userData, allUsers, conn)
