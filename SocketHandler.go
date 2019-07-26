@@ -21,7 +21,7 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 		err := decoder.Decode(&userData)
 		fmt.Println("AFTER DECODE")
 		if err != nil {
-			go fmt.Println("Error", err, conn.RemoteAddr())
+			fmt.Println("Error", err, conn.RemoteAddr())
 			respObj := QueryZeroType{
 				Q:            0,
 				Ok:           false,
