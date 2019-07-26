@@ -21,7 +21,6 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 				ErrorMessage: "400: Bad Request",
 			}
 			json.NewEncoder(conn).Encode(respObj)
-			break
 		} else {
 			err := json.Unmarshal(msg, &userData)
 			fmt.Println(err, userData)
@@ -69,7 +68,6 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 			}
 		}
 	}
-	conn.Close()
 }
 
 func addNewEntry(userData QueryOneType, allUsers map[string]net.Conn, conn net.Conn) {
