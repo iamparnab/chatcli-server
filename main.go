@@ -21,12 +21,12 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	server, serverError := net.Listen("tcp", ":"+port)
+	server, serverError := net.Listen("tcp", ":"+"2222")
 
 	if serverError != nil {
 		fmt.Println("Error: ", serverError)
 	} else {
-		// go startHTTP(allUsers)
+		go startHTTP(allUsers)
 		go fmt.Println("Server is Up and Running at port ", port)
 		for {
 			conn, connError := server.Accept()
