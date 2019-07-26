@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net"
 )
 
@@ -18,7 +19,7 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 		err := decoder.Decode(&userData)
 
 		if err != nil {
-			// go fmt.Println("Connection message parse error ", err)
+			go fmt.Println("Error", err, conn.RemoteAddr())
 			respObj := QueryZeroType{
 				Q:            0,
 				Ok:           false,
