@@ -20,13 +20,13 @@ func SocketHandler(conn net.Conn, allUsers map[string]net.Conn) {
 
 		if err != nil {
 			go fmt.Println("Error", err, conn.RemoteAddr())
-			conn.Close()
 			respObj := QueryZeroType{
 				Q:            0,
 				Ok:           false,
 				ErrorMessage: "400: Bad Request",
 			}
 			json.NewEncoder(conn).Encode(respObj)
+			conn.Close()
 		} else {
 			switch userData.Q {
 			case 0:
