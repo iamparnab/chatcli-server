@@ -1,4 +1,4 @@
-package main
+package chatmodels
 
 //QueryZeroType type
 type QueryZeroType struct {
@@ -17,4 +17,10 @@ type QueryOneType struct {
 	Sender       string `json:"s"`
 	Receiver     string `json:"r"`
 	Message      string `json:"m"`
+}
+
+//AllUserType represents response object model
+type AllUserType struct {
+	UserCount int      `json:"uc"`
+	UserNames []string `json:"un"`
 }
