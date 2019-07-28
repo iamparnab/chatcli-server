@@ -9,7 +9,7 @@ import (
 
 func main() {
 	//Create User Map
-	allUsers := make(map[string]net.Conn, 0)
+	allUsers := make(map[string]net.Conn)
 
 	port := os.Getenv("PORT")
 	if port == "" {
